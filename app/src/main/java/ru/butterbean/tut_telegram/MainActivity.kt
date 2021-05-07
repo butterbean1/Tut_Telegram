@@ -7,7 +7,7 @@ import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding:ActivityMainBinding
-    val f=1
+    val f=12
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
