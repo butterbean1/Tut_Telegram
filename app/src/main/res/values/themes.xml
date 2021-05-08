@@ -11,6 +11,7 @@
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
 
+        <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="android:colorBackground">@color/colorAccent</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

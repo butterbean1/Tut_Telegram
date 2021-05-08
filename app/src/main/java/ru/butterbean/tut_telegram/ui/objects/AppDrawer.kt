@@ -102,8 +102,8 @@ class AppDrawer(val mainActivity: AppCompatActivity,val toolbar: Toolbar) {
             .withActivity(mainActivity)
             .withHeaderBackground(R.drawable.header)
             .addProfiles(
-                ProfileDrawerItem().withName("Vovan S")
-                    .withEmail("+7(982)156-89-05")
+                ProfileDrawerItem().withName(mainActivity.getString(R.string.def_username))
+                    .withEmail(mainActivity.getString(R.string.def_phone_number))
             )
             .build()
 
