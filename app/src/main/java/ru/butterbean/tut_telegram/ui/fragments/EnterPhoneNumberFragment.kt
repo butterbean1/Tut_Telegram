@@ -9,6 +9,8 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_enter_code.*
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import ru.butterbean.tut_telegram.R
+import ru.butterbean.tut_telegram.utilites.replaceFragment
+import ru.butterbean.tut_telegram.utilites.showToast
 
 class EnterPhoneNumberFragment : BaseFragment(R.layout.fragment_enter_phone_number) {
     override fun onStart() {
@@ -20,12 +22,9 @@ class EnterPhoneNumberFragment : BaseFragment(R.layout.fragment_enter_phone_numb
 
     private fun sendCode() {
         if (register_input_phone_number.text.toString().isEmpty()){
-            Toast.makeText(activity,getString(R.string.register_toast_enter_code),Toast.LENGTH_SHORT).show()
+            showToast(getString(R.string.register_toast_enter_code))
         }else{
-            fragmentManager?.beginTransaction()
-                ?.replace(R.id.register_dataContainer,EnterCodeFragment())
-                ?.addToBackStack(null)
-                ?.commit()
+            replaceFragment(EnterCodeFragment())
         }
     }
 }

@@ -13,6 +13,7 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.ui.fragments.SettingsFragment
+import ru.butterbean.tut_telegram.utilites.replaceFragment
 
 class AppDrawer(val mainActivity: AppCompatActivity,val toolbar: Toolbar) {
     private lateinit var mDrawer: Drawer
@@ -86,9 +87,7 @@ class AppDrawer(val mainActivity: AppCompatActivity,val toolbar: Toolbar) {
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
                     when (position){
-                        7 -> mainActivity.supportFragmentManager.beginTransaction()
-                            .addToBackStack(null)
-                            .replace(R.id.dataContainer, SettingsFragment()).commit()
+                        7 -> mainActivity.replaceFragment(SettingsFragment())
                     }
                     return false
                 }
@@ -102,7 +101,7 @@ class AppDrawer(val mainActivity: AppCompatActivity,val toolbar: Toolbar) {
             .withActivity(mainActivity)
             .withHeaderBackground(R.drawable.header)
             .addProfiles(
-                ProfileDrawerItem().withName(mainActivity.getString(R.string.def_username))
+                ProfileDrawerItem().withName(mainActivity.getString(R.string.def_full_name))
                     .withEmail(mainActivity.getString(R.string.def_phone_number))
             )
             .build()
