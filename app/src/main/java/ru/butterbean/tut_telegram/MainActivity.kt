@@ -113,7 +113,6 @@ class MainActivity : AppCompatActivity() {
                     }
                     return false
                 }
-
             })
             .build()
 
