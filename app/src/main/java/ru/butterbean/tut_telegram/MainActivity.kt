@@ -15,6 +15,7 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
 import ru.butterbean.tut_telegram.ui.ChatsFragment
+import ru.butterbean.tut_telegram.ui.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -105,7 +106,11 @@ class MainActivity : AppCompatActivity() {
                     position: Int,
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
-                    Toast.makeText(applicationContext,position.toString(),Toast.LENGTH_SHORT).show()
+                    when (position){
+                        7 -> supportFragmentManager.beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.dataContainer,SettingsFragment()).commit()
+                    }
                     return false
                 }
 
