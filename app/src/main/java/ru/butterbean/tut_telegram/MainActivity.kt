@@ -4,10 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.FirebaseApiNotAvailableException
+import com.google.firebase.auth.FirebaseAuth
 import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
 import ru.butterbean.tut_telegram.ui.fragments.ChatsFragment
 import ru.butterbean.tut_telegram.ui.objects.AppDrawer
+import ru.butterbean.tut_telegram.utilites.AUTH
 import ru.butterbean.tut_telegram.utilites.replaceActivity
 import ru.butterbean.tut_telegram.utilites.replaceFragment
 
@@ -30,18 +33,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        if (true) {
+        if (AUTH.currentUser != null) {
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
-            replaceFragment(ChatsFragment())
-        }else{
+            replaceFragment(ChatsFragment(),false)
+        } else {
             replaceActivity(RegisterActivity())
         }
     }
 
     private fun initFields() {
         mToolbar = mBinding.mainToolbar
-        mAppDrawer = AppDrawer(this,mToolbar)
+        mAppDrawer = AppDrawer(this, mToolbar)
+        AUTH = FirebaseAuth.getInstance()
 
     }
 }
