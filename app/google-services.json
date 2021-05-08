@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "501795030247",
+    "project_id": "telegram-c2b28",
+    "storage_bucket": "telegram-c2b28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501795030247:android:1da47dfb244bab06d80e42",
+        "android_client_info": {
+          "package_name": "ru.butterbean.tut_telegram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501795030247-bhlpvkckca9ctfnbs5u7489ssf4t45fq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU2yqtr4VF8Oiks7qmLJ7HOvuJNxKYHWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "501795030247-bhlpvkckca9ctfnbs5u7489ssf4t45fq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
