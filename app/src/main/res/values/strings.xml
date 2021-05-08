@@ -2,4 +2,13 @@
     <string name="app_name">Tut_Telegram</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="def_username">Vovan S</string>
+    <string name="def_status">в сети</string>
+    <string name="settings_text_account">Аккаунт</string>
+    <string name="def_phone_number">+7(982)156-89-05</string>
+    <string name="settings_label_phone_number">Нажмите чтобы изменить телефон</string>
+    <string name="def_login">vovan_s</string>
+    <string name="settings_label_login">Имя пользователя</string>
+    <string name="settings_def_bio">О себе</string>
+    <string name="settings_label_bio">Напишите немного о себе</string>
 </resources>
