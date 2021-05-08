@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.databinding.ActivityRegisterBinding
 import ru.butterbean.tut_telegram.ui.fragments.EnterPhoneNumberFragment
+import ru.butterbean.tut_telegram.utilites.initFirebase
 import ru.butterbean.tut_telegram.utilites.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
     }
 
     override fun onStart() {

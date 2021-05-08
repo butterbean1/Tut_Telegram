@@ -5,10 +5,7 @@ import kotlinx.android.synthetic.main.fragment_enter_code.*
 import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.activities.RegisterActivity
-import ru.butterbean.tut_telegram.utilites.AUTH
-import ru.butterbean.tut_telegram.utilites.AppTextWatcher
-import ru.butterbean.tut_telegram.utilites.replaceActivity
-import ru.butterbean.tut_telegram.utilites.showToast
+import ru.butterbean.tut_telegram.utilites.*
 
 class EnterCodeFragment(val phoneNumber: String, val id: String) : BaseFragment(R.layout.fragment_enter_code) {
 
@@ -28,6 +25,22 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) : BaseFragment(
         val credential = PhoneAuthProvider.getCredential(id,code)
         AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful){
+                val uid = AUTH.currentUser.uid.toString()
+                val dataMap = mutableMapOf<String,Any>()
+                dataMap[CHILD_ID] = uid
+                dataMap[CHILD_PHONE] = phoneNumber
+                dataMap[CHILD_USERNAME]  = uid
+
+                REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dataMap)
+                    .addOnCompleteListener {task2 ->
+                    if (task2.isSuccessful){
+                        showToast("Добро пожаловать")
+                        (activity as RegisterActivity).replaceActivity(MainActivity())
+                    }else{
+                        showToast(task2.exception?.message.toString())
+                    }
+                }
+
                 showToast("Добро пожаловать!")
                 (activity as RegisterActivity).replaceActivity(MainActivity())
             }else{showToast(task.exception?.message.toString())}

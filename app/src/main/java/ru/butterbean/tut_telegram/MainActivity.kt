@@ -11,6 +11,7 @@ import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
 import ru.butterbean.tut_telegram.ui.fragments.ChatsFragment
 import ru.butterbean.tut_telegram.ui.objects.AppDrawer
 import ru.butterbean.tut_telegram.utilites.AUTH
+import ru.butterbean.tut_telegram.utilites.initFirebase
 import ru.butterbean.tut_telegram.utilites.replaceActivity
 import ru.butterbean.tut_telegram.utilites.replaceFragment
 
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar)
-        AUTH = FirebaseAuth.getInstance()
+        initFirebase()
 
     }
 }
