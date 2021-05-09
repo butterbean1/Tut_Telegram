@@ -3,10 +3,12 @@ package ru.butterbean.tut_telegram.ui.fragments
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.utilites.AUTH
+import ru.butterbean.tut_telegram.utilites.USER
 import ru.butterbean.tut_telegram.utilites.replaceActivity
 import ru.butterbean.tut_telegram.utilites.replaceFragment
 
@@ -14,6 +16,15 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
+        initFields()
+    }
+
+    private fun initFields() {
+        settings_bio.text = USER.bio
+        settings_full_name.text = USER.fullname
+        settings_username.text = USER.username
+        settings_status.text = USER.status
+        settings_phone_number.text = USER.phone
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

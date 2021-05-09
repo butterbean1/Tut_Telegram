@@ -10,7 +10,7 @@ import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.utilites.*
 
 
-class ChangeNameFragment : Fragment(R.layout.fragment_change_name) {
+class ChangeNameFragment : BaseFragment(R.layout.fragment_change_name) {
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)

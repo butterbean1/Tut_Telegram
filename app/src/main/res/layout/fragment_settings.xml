@@ -39,6 +39,7 @@
             app:layout_constraintStart_toEndOf="@+id/settings_user_photo"
             app:layout_constraintTop_toTopOf="@+id/settings_user_photo" />
         <TextView
+            android:id="@+id/settings_status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_margin"
@@ -71,7 +72,7 @@
         style="@style/settingsButtons">
         <TextView
             android:id="@+id/settings_phone_number"
-            android:text="@string/def_phone_number"
+            tools:text="@string/def_phone_number"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/normalText" />
@@ -96,7 +97,7 @@
         style="@style/settingsButtons">
         <TextView
             android:id="@+id/settings_username"
-            android:text="@string/def_username"
+            tools:text="@string/def_username"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/normalText" />
@@ -121,7 +122,7 @@
         style="@style/settingsButtons">
         <TextView
             android:id="@+id/settings_bio"
-            android:text="@string/settings_def_bio"
+            tools:text="@string/settings_def_bio"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/normalText" />
