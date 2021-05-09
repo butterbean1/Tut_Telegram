@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.butterbean.tut_telegram.R
 
-fun Fragment.showToast(message: String, centerGravity: Boolean = false) {
-    val toast = Toast.makeText(this.context, message, Toast.LENGTH_SHORT)
+fun showToast(message: String, centerGravity: Boolean = false) {
+    val toast = Toast.makeText(APP_ACTIVITY, message, Toast.LENGTH_SHORT)
     if (centerGravity) {
         toast.setGravity(Gravity.CENTER, 0, 0)
     }

@@ -1,6 +1,8 @@
 package ru.butterbean.tut_telegram
 
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import ru.butterbean.tut_telegram.activities.RegisterActivity
@@ -53,4 +55,8 @@ class  MainActivity : AppCompatActivity() {
             })
     }
 
+    fun hideKeyboard(){
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(window.decorView.windowToken,0)
+    }
 }

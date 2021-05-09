@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ru.butterbean.tut_telegram.MainActivity
+import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
 
 open class BaseFragment(val layout: Int) : Fragment(layout) {
 
     override fun onStart() {
         super.onStart()
-        (activity as MainActivity).mAppDrawer.disableDrawer()
+        APP_ACTIVITY.mAppDrawer.disableDrawer()
     }
 
     override fun onStop() {
         super.onStop()
-        (activity as MainActivity).mAppDrawer.enableDrawer()
+        APP_ACTIVITY.mAppDrawer.enableDrawer()
     }
 }

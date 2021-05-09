@@ -6,20 +6,22 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
+import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
 
 open class BaseChangeFragment(layout:Int) : Fragment(layout) {
     override fun onStart() {
         super.onStart()
         setHasOptionsMenu(true)
-        (activity as MainActivity).mAppDrawer.disableDrawer()
+        APP_ACTIVITY.mAppDrawer.disableDrawer()
     }
 
     override fun onStop() {
         super.onStop()
+        APP_ACTIVITY.hideKeyboard()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        (activity as MainActivity).menuInflater.inflate(R.menu.settings_confirm_menu,menu)
+        APP_ACTIVITY.menuInflater.inflate(R.menu.settings_confirm_menu,menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
