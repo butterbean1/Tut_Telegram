@@ -8,26 +8,15 @@ import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.utilites.*
 
-class ChangeUsernameFragment : BaseFragment(R.layout.fragment_change_username) {
+class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_username) {
 
     lateinit var mNewUsername:String
     override fun onResume() {
         super.onResume()
-        setHasOptionsMenu(true)
         settings_input_username.setText(USER.username)
     }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        (activity as MainActivity).menuInflater.inflate(R.menu.settings_confirm_menu,menu)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.settings_confirm_change -> changeUsername()
-        }
-        return true
-    }
-
-    private fun changeUsername() {
+    override fun change() {
         mNewUsername = settings_input_username.text.toString().toLowerCase()
         if (mNewUsername.isEmpty()){
             showToast(getString(R.string.settings_toast_name_isempty),true)
