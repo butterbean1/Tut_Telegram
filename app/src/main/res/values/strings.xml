@@ -24,4 +24,6 @@
     <string name="settings_toast_name_isempty">Имя не может быть пустым</string>
     <string name="data_updated">Данные обновлены</string>
     <string name="change_photo">Выбрать фотографию</string>
+    <string name="settings_your_username">Ваше имя пользователя</string>
+    <string name="username_is_busy">Это имя занято. Выберите другое!</string>
 </resources>

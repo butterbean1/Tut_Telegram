@@ -1,43 +1,48 @@
 package ru.butterbean.tut_telegram.utilites
 
 import android.content.Intent
+import android.view.Gravity
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import ru.butterbean.tut_telegram.R
-import ru.butterbean.tut_telegram.activities.RegisterActivity
-import ru.butterbean.tut_telegram.ui.fragments.ChatsFragment
 
-fun Fragment.showToast(message:String){
-    Toast.makeText(this.context,message,Toast.LENGTH_SHORT).show()
+fun Fragment.showToast(message: String, centerGravity: Boolean = false) {
+    val toast = Toast.makeText(this.context, message, Toast.LENGTH_SHORT)
+    if (centerGravity) {
+        toast.setGravity(Gravity.CENTER, 0, 0)
+    }
+    toast.show()
 }
 
-fun AppCompatActivity.replaceActivity(activity:AppCompatActivity){
+fun AppCompatActivity.replaceActivity(activity: AppCompatActivity) {
     val intent = Intent(this, activity::class.java)
     startActivity(intent)
     this.finish()
 }
 
-fun AppCompatActivity.replaceFragment(fragment: Fragment, addStack:Boolean = true){
-    if (addStack){
+fun AppCompatActivity.replaceFragment(fragment: Fragment, addStack: Boolean = true) {
+    if (addStack) {
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
-            .replace(R.id.dataContainer
-                , fragment)
+            .replace(
+                R.id.dataContainer, fragment
+            )
             .commit()
-    }else{
+    } else {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer
-                , fragment)
+            .replace(
+                R.id.dataContainer, fragment
+            )
             .commit()
     }
 }
 
-fun Fragment.replaceFragment(fragment: Fragment){
+fun Fragment.replaceFragment(fragment: Fragment) {
     this.fragmentManager?.beginTransaction()
         ?.addToBackStack(null)
-        ?.replace(R.id.dataContainer
-            , fragment)
+        ?.replace(
+            R.id.dataContainer, fragment
+        )
         ?.commit()
 }

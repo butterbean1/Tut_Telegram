@@ -16,7 +16,9 @@ class ChangeNameFragment : BaseFragment(R.layout.fragment_change_name) {
         setHasOptionsMenu(true)
         val fullnameList = USER.fullname.split(" ")
         settings_input_name.setText(fullnameList[0])
-        settings_input_surname.setText(fullnameList[1])
+        if (fullnameList.size > 1){
+            settings_input_surname.setText(fullnameList[1])
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -34,13 +36,13 @@ class ChangeNameFragment : BaseFragment(R.layout.fragment_change_name) {
         val name = settings_input_name.text.toString()
         val surname = settings_input_surname.text.toString()
         if (name.isEmpty()){
-            showToast(getString(R.string.settings_toast_name_isempty))
+            showToast(getString(R.string.settings_toast_name_isempty),true)
         }else{
             val fullname = "$name $surname"
             REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_FULLNAME)
                 .setValue(fullname).addOnCompleteListener {
                     if (it.isSuccessful){
-                        showToast(getString(R.string.data_updated))
+                        showToast(getString(R.string.data_updated),true)
                         USER.fullname = fullname
                         fragmentManager?.popBackStack()
                     }
