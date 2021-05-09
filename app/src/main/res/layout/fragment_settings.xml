@@ -51,6 +51,42 @@
             app:layout_constraintTop_toBottomOf="@+id/settings_full_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settings_change_photo_block"
+        app:layout_constraintTop_toBottomOf="@id/settings_header_block"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/settingsButtons"
+        android:layout_marginTop="0dp"
+        >
+
+        <ImageView
+            android:id="@+id/settings_change_photo"
+            android:layout_width="@dimen/settings_btn_change_photo_width"
+            android:layout_height="@dimen/settings_btn_change_photo_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="@dimen/vertical_margin"
+            android:src="@drawable/ic_add_photo"
+
+            />
+        <TextView
+            android:id="@+id/settings_label_change_photo"
+            android:text="@string/change_photo"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            app:layout_constraintTop_toTopOf="@id/settings_change_photo"
+            app:layout_constraintBottom_toBottomOf="@id/settings_change_photo"
+            app:layout_constraintStart_toEndOf="@id/settings_change_photo"
+            style="@style/smallText" />
+        <View
+            app:layout_constraintTop_toBottomOf="@id/settings_label_change_photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/fat_separator" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/settings_text_account"
         android:layout_width="match_parent"
@@ -61,7 +97,7 @@
         android:textStyle="bold"
         android:text="@string/settings_text_account"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@+id/settings_header_block"
+        app:layout_constraintTop_toBottomOf="@+id/settings_change_photo_block"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -139,6 +175,9 @@
             style="@style/separator" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
+<!--
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/settings_change_photo"
         android:layout_width="@dimen/settings_user_photo_width"
@@ -151,5 +190,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/settings_header_block"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_header_block" />
+-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

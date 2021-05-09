@@ -34,6 +34,9 @@
         <item name="android:layout_marginTop">@dimen/vertical_margin</item>
         <item name="android:background">@color/grey</item>
     </style>
+    <style name="fat_separator" parent="separator">
+        <item name="android:layout_height">5dp</item>
+    </style>
 
     <style name="mainToolbar">
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
