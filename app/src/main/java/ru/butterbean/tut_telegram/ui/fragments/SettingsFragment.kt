@@ -8,6 +8,7 @@ import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.utilites.AUTH
 import ru.butterbean.tut_telegram.utilites.replaceActivity
+import ru.butterbean.tut_telegram.utilites.replaceFragment
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onResume() {
@@ -25,6 +26,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                 AUTH.signOut()
                 (activity as MainActivity).replaceActivity(RegisterActivity())
             }
+            R.id.settings_menu_change_name -> replaceFragment(ChangeNameFragment())
         }
         return true
     }

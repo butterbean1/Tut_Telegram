@@ -19,4 +19,8 @@
     <string name="register_hint_def_code">- - - - - -</string>
     <string name="register_title_your_phone">Ваш телефон</string>
     <string name="register_enter_phone_number">Введите номер телефона</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="settings_toast_name_isempty">Имя не может быть пустым</string>
+    <string name="data_updated">Данные обновлены</string>
 </resources>
