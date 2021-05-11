@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "501795030247",
+    "firebase_url": "https://telegram-c2b28-default-rtdb.firebaseio.com",
     "project_id": "telegram-c2b28",
     "storage_bucket": "telegram-c2b28.appspot.com"
   },

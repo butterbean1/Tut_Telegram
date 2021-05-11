@@ -1,11 +1,6 @@
 package ru.butterbean.tut_telegram.ui.fragments
 
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_change_name.*
-import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.utilites.*
 
@@ -31,7 +26,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
             showToast(getString(R.string.settings_toast_name_isempty),true)
         }else{
             val fullname = "$name $surname"
-            REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_FULLNAME)
+            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_FULLNAME)
                 .setValue(fullname).addOnCompleteListener {
                     if (it.isSuccessful){
                         showToast(getString(R.string.data_updated),true)

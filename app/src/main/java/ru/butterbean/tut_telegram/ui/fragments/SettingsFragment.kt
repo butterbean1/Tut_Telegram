@@ -1,16 +1,16 @@
 package ru.butterbean.tut_telegram.ui.fragments
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import com.canhub.cropper.CropImage
+import com.canhub.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
-import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.activities.RegisterActivity
-import ru.butterbean.tut_telegram.utilites.AUTH
-import ru.butterbean.tut_telegram.utilites.USER
-import ru.butterbean.tut_telegram.utilites.replaceActivity
-import ru.butterbean.tut_telegram.utilites.replaceFragment
+import ru.butterbean.tut_telegram.utilites.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onResume() {
@@ -31,6 +31,34 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_btn_change_bio.setOnClickListener {
             replaceFragment(ChangeBioFragment())
         }
+        settings_btn_change_photo.setOnClickListener {
+            changePhotoUser()
+        }
+    }
+
+    private fun changePhotoUser() {
+        CropImage.activity()
+            .setAspectRatio(1,1)
+            .setRequestedSize(600,600)
+            .setCropShape(CropImageView.CropShape.OVAL)
+            .start(APP_ACTIVITY)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+            && requestCode==RESULT_OK
+            && data!=null){
+            val uri = CropImage.getActivityResult(data)?.uriContent!!
+            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
+                .child(CURRENT_UID)
+            path.putFile(uri).addOnCompleteListener{
+                if (it.isSuccessful){
+                    showToast(getString(R.string.data_updated))
+                }
+            }
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -41,7 +69,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         when (item.itemId) {
             R.id.settings_menu_exit -> {
                 AUTH.signOut()
-                (activity as MainActivity).replaceActivity(RegisterActivity())
+                (APP_ACTIVITY).replaceActivity(RegisterActivity())
             }
             R.id.settings_menu_change_name -> replaceFragment(ChangeNameFragment())
         }
