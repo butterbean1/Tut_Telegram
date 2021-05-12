@@ -45,21 +45,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-            && requestCode==RESULT_OK
-            && data!=null){
-            val uri = CropImage.getActivityResult(data)?.uriContent!!
-            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
-                .child(CURRENT_UID)
-            path.putFile(uri).addOnCompleteListener{
-                if (it.isSuccessful){
-                    showToast(getString(R.string.data_updated))
-                }
-            }
-
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         activity?.menuInflater?.inflate(R.menu.settings_action_menu, menu)
