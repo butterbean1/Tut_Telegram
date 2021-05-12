@@ -10,7 +10,7 @@ import ru.butterbean.tut_telegram.ui.fragments.ChatsFragment
 import ru.butterbean.tut_telegram.ui.objects.AppDrawer
 import ru.butterbean.tut_telegram.utilites.*
 
-class  MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mToolbar: Toolbar
@@ -22,7 +22,7 @@ class  MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
         APP_ACTIVITY = this
         initFirebase()
-        initUser{
+        initUser {
             initFields()
             initFunc()
         }
@@ -42,7 +42,7 @@ class  MainActivity : AppCompatActivity() {
         setSupportActionBar(mToolbar)
         mAppDrawer.create()
         if (AUTH.currentUser != null) {
-            replaceFragment(ChatsFragment(),false)
+            replaceFragment(ChatsFragment(), false)
         } else {
             replaceActivity(RegisterActivity())
         }
