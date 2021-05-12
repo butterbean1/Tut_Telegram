@@ -12,6 +12,7 @@ class ChangeBioFragment : BaseChangeFragment(R.layout.fragment_change_bio) {
 
     override fun change() {
         val newBio = settings_input_bio.text.toString()
+
         REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_BIO).setValue(newBio)
             .addOnCompleteListener {
                 if (it.isSuccessful){
