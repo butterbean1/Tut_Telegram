@@ -2,13 +2,11 @@ package ru.butterbean.tut_telegram.ui.fragments
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.net.Uri
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageView
-import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.activities.RegisterActivity
@@ -36,7 +34,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         settings_btn_change_photo.setOnClickListener {
             changePhotoUser()
         }
-        settings_user_photo.downloadandSetImage(USER.photoUrl)
+        settings_user_photo.downloadAndSetImage(USER.photoUrl)
     }
 
     private fun changePhotoUser() {
@@ -75,9 +73,10 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             putImageToStorage(uri,path){
                 getUrlFromStorage(path){
                     putUrlToDatabase(it){
-                        settings_user_photo.downloadandSetImage(it)
+                        settings_user_photo.downloadAndSetImage(it)
                         showToast(getString(R.string.data_updated))
                         USER.photoUrl = it
+                        APP_ACTIVITY.mAppDrawer.updateHeader()
                     }
                 }
             }

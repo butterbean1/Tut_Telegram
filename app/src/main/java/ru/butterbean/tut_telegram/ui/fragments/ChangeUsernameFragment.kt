@@ -7,6 +7,7 @@ import ru.butterbean.tut_telegram.utilites.*
 class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_username) {
 
     lateinit var mNewUsername:String
+
     override fun onResume() {
         super.onResume()
         settings_input_username.setText(USER.username)
@@ -16,7 +17,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
         mNewUsername = settings_input_username.text.toString().toLowerCase()
         if (mNewUsername.isEmpty()){
             showToast(getString(R.string.settings_toast_name_isempty),true)
-        }else{
+        }else if (mNewUsername!= USER.username){
             REF_DATABASE_ROOT.child(NODE_USERNAMES)
                 .addListenerForSingleValueEvent(AppValueEventListener{
                     if (it.hasChild(mNewUsername)){
@@ -30,7 +31,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
                             }
                     }
                 })
-        }
+        }else fragmentManager?.popBackStack()
     }
 
     private fun updateCurrentUsername() {
