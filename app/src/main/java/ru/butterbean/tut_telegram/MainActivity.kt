@@ -1,13 +1,8 @@
 package ru.butterbean.tut_telegram
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.canhub.cropper.CropImage
 import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
 import ru.butterbean.tut_telegram.models.User
@@ -25,10 +20,6 @@ class  MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-    }
-
-    override fun onStart() {
-        super.onStart()
         APP_ACTIVITY = this
         initFields()
         initFunc()
@@ -58,39 +49,5 @@ class  MainActivity : AppCompatActivity() {
             })
     }
 
-    fun hideKeyboard(){
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(window.decorView.windowToken,0)
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-            && resultCode== RESULT_OK
-            && data!=null){
-            val uri = CropImage.getActivityResult(data)?.uriContent
-            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
-                .child(CURRENT_UID)
-            path.putFile(uri!!).addOnCompleteListener{task1->
-                if (task1.isSuccessful){
-                    path.downloadUrl.addOnCompleteListener {task2->
-                        if (task2.isSuccessful){
-                            val photoUrl = task2.result.toString()
-                            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
-                                .child(CHILD_PHOTO_URL).setValue(photoUrl)
-                                .addOnCompleteListener {
-                                    if(it.isSuccessful){
-                                        showToast(getString(R.string.data_updated))
-                                        USER.photoUrl = photoUrl
-                                    }
-                                }
-                        }
-                    }
-                }
-            }
-
-        }else{
-            showToast("Ошибка прикрепления фото $resultCode")
-        }
-    }
 }

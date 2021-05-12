@@ -7,17 +7,19 @@ import androidx.fragment.app.Fragment
 import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
+import ru.butterbean.tut_telegram.utilites.hideKeyboard
 
 open class BaseChangeFragment(layout:Int) : Fragment(layout) {
     override fun onStart() {
         super.onStart()
         setHasOptionsMenu(true)
         APP_ACTIVITY.mAppDrawer.disableDrawer()
+        hideKeyboard()
     }
 
     override fun onStop() {
         super.onStop()
-        APP_ACTIVITY.hideKeyboard()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

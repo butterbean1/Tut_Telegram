@@ -1,10 +1,14 @@
 package ru.butterbean.tut_telegram.utilites
 
+import android.content.Context
 import android.content.Intent
 import android.view.Gravity
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import ru.butterbean.tut_telegram.R
 
 fun showToast(message: String, centerGravity: Boolean = false) {
@@ -13,6 +17,10 @@ fun showToast(message: String, centerGravity: Boolean = false) {
         toast.setGravity(Gravity.CENTER, 0, 0)
     }
     toast.show()
+}
+fun hideKeyboard(){
+    val imm = APP_ACTIVITY.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(APP_ACTIVITY.window.decorView.windowToken,0)
 }
 
 fun AppCompatActivity.replaceActivity(activity: AppCompatActivity) {
@@ -45,4 +53,11 @@ fun Fragment.replaceFragment(fragment: Fragment) {
             R.id.dataContainer, fragment
         )
         ?.commit()
+}
+
+fun CircleImageView.downloadandSetImage(url: String){
+    Picasso.get()
+        .load(url)
+        .placeholder(R.drawable.def_photo)
+        .into(this)
 }
