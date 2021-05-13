@@ -5,6 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
 import ru.butterbean.tut_telegram.models.User
@@ -25,7 +29,10 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this
         initFirebase()
         initUser {
-            initContacts()
+            CoroutineScope(Dispatchers.IO).launch {
+                initContacts()
+            }
+
             initFields()
             initFunc()
         }
@@ -33,7 +40,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initContacts() {
         if (checkPremission(READ_CONTACTS)){
-            showToast("Чтение контактов")
+            val  array = arrayOfNulls<Int>(50000)
+            array.forEach { println(it) }
         }
     }
 
