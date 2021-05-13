@@ -1,8 +1,10 @@
 package ru.butterbean.tut_telegram
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
 import ru.butterbean.tut_telegram.models.User
@@ -23,8 +25,15 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this
         initFirebase()
         initUser {
+            initContacts()
             initFields()
             initFunc()
+        }
+    }
+
+    private fun initContacts() {
+        if (checkPremission(READ_CONTACTS)){
+            showToast("Чтение контактов")
         }
     }
 
@@ -53,4 +62,14 @@ class MainActivity : AppCompatActivity() {
         mAppDrawer = AppDrawer(this, mToolbar)
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (ContextCompat.checkSelfPermission(APP_ACTIVITY, READ_CONTACTS)==PackageManager.PERMISSION_GRANTED){
+            initContacts()
+        }
+    }
 }
