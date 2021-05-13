@@ -38,12 +38,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initContacts() {
-        if (checkPremission(READ_CONTACTS)){
-            val  array = arrayOfNulls<Int>(50000)
-            array.forEach { println(it) }
-        }
-    }
 
     override fun onStart() {
         super.onStart()
