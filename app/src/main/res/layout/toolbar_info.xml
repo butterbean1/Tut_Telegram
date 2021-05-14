@@ -10,7 +10,6 @@
         android:id="@+id/toolbar_image"
         android:layout_width="@dimen/toolbar_image_width"
         android:layout_height="@dimen/toolbar_image_height"
-        android:layout_marginStart="@dimen/app_small_margin"
         android:src="@drawable/def_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

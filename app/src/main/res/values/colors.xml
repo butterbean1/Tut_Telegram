@@ -13,6 +13,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#837E7E</color>
     <color name="green">#A2F494</color>
+    <color name="blue_wish">#78E1E3</color>
 
     <!-- Material DEFAULT colors -->
     <color name="material_drawer_primary">#2196F3</color>
