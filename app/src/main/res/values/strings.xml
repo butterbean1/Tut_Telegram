@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tut_Telegram</string>
+    <string name="app_name">Телега</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="def_full_name">Vovan S</string>
@@ -26,4 +26,7 @@
     <string name="change_photo">Выбрать фотографию</string>
     <string name="settings_your_username">Ваше имя пользователя</string>
     <string name="username_is_busy">Это имя занято. Выберите другое!</string>
+    <string name="message">Сообщение</string>
+    <string name="def_message_text">Привет я Вова</string>
+    <string name="def_message_time">09:37</string>
 </resources>
