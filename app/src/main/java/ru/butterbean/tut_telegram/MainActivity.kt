@@ -7,11 +7,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
-import ru.butterbean.tut_telegram.models.User
 import ru.butterbean.tut_telegram.ui.fragments.ChatsFragment
 import ru.butterbean.tut_telegram.ui.objects.AppDrawer
 import ru.butterbean.tut_telegram.utilites.*

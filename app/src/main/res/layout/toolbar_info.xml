@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/toolbar_image"
+        android:id="@+id/toolbar_chat_contact_image"
         android:layout_width="@dimen/toolbar_image_width"
         android:layout_height="@dimen/toolbar_image_height"
         android:src="@drawable/def_photo"
@@ -16,18 +16,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/toolbar_fullname"
+        android:id="@+id/toolbar_chat_contact_fullname"
         style="@style/normalText"
-        app:layout_constraintStart_toEndOf="@id/toolbar_image"
-        app:layout_constraintTop_toTopOf="@id/toolbar_image"
+        app:layout_constraintStart_toEndOf="@id/toolbar_chat_contact_image"
+        app:layout_constraintTop_toTopOf="@id/toolbar_chat_contact_image"
         tools:text="@string/def_full_name"
         android:textColor="@color/colorAccent"/>
 
     <TextView
-        android:id="@+id/contact_status"
+        android:id="@+id/toolbar_chat_contact_status"
         style="@style/smallText"
         android:textColor="@color/colorAccentDark"
-        app:layout_constraintStart_toEndOf="@id/toolbar_image"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_fullname"
+        app:layout_constraintStart_toEndOf="@id/toolbar_chat_contact_image"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_chat_contact_fullname"
         tools:text="@string/def_status" />
 </androidx.constraintlayout.widget.ConstraintLayout>
