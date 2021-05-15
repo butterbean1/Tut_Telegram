@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.contact_item.view.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.models.CommonModel
+import ru.butterbean.tut_telegram.ui.fragments.single_chat.SingleChatFragment
 import ru.butterbean.tut_telegram.utilites.*
 
 class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {

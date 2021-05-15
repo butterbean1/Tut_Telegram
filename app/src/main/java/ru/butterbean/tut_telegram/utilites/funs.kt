@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.models.CommonModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun showToast(message: String, centerGravity: Boolean = false) {
     val toast = Toast.makeText(APP_ACTIVITY, message, Toast.LENGTH_SHORT)
@@ -86,5 +88,12 @@ fun initContacts() {
         cursor?.close()
         updatePhonesToDatabase(arrayContacts)
     }
+
+}
+
+fun String.asTime(): String {
+    val time = Date(this.toLong())
+    val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+    return timeFormat.format(time)
 }
 
