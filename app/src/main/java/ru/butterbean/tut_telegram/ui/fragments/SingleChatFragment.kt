@@ -9,10 +9,11 @@ import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.models.UserModel
 import ru.butterbean.tut_telegram.utilites.*
 
-class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layout.fragment_single_chat) {
+class SingleChatFragment(private val contact: CommonModel) :
+    BaseFragment(R.layout.fragment_single_chat) {
 
-    private lateinit var mListenerInfoToolbar : AppValueEventListener
-    private lateinit var mReceivingUser:UserModel
+    private lateinit var mListenerInfoToolbar: AppValueEventListener
+    private lateinit var mReceivingUser: UserModel
     private lateinit var mToolbarInfo: View
     private lateinit var mRefUser: DatabaseReference
 
@@ -29,8 +30,13 @@ class SingleChatFragment(private val contact: CommonModel) : BaseFragment(R.layo
     }
 
     private fun initInfoToolbar() {
+        if (mReceivingUser.fullname.isEmpty()) {
+            mToolbarInfo.toolbar_chat_contact_fullname.text = contact.fullname
+        } else {
+            mToolbarInfo.toolbar_chat_contact_fullname.text = mReceivingUser.fullname
+        }
         mToolbarInfo.toolbar_chat_contact_image.downloadAndSetImage(mReceivingUser.photoUrl)
-        mToolbarInfo.toolbar_chat_contact_fullname.text = mReceivingUser.fullname
+
         mToolbarInfo.toolbar_chat_contact_status.text = mReceivingUser.state
 
     }

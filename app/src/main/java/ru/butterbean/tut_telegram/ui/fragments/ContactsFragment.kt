@@ -15,13 +15,13 @@ import ru.butterbean.tut_telegram.utilites.*
 
 class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter:FirebaseRecyclerAdapter<CommonModel,ContactsHolder>
-    private lateinit var mRefContacts:DatabaseReference
-    private lateinit var mRefUsers:DatabaseReference
+    private lateinit var mAdapter: FirebaseRecyclerAdapter<CommonModel, ContactsHolder>
+    private lateinit var mRefContacts: DatabaseReference
+    private lateinit var mRefUsers: DatabaseReference
     private lateinit var mRefUserListener: AppValueEventListener
-    private var mapListeners = hashMapOf<DatabaseReference,AppValueEventListener>()
+    private var mapListeners = hashMapOf<DatabaseReference, AppValueEventListener>()
 
-    class ContactsHolder(view: View):RecyclerView.ViewHolder(view) {
+    class ContactsHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name = view.contact_fullname
         val status = view.contact_status
         val photo = view.contact_photo
@@ -37,7 +37,7 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
         super.onPause()
         mAdapter.stopListening()
         println()
-        mapListeners.forEach{
+        mapListeners.forEach {
             it.key.removeEventListener(it.value)
         }
         println()
@@ -48,13 +48,14 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
         mRefContacts = REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_UID)
 
         val options = FirebaseRecyclerOptions.Builder<CommonModel>()
-            .setQuery(mRefContacts,CommonModel::class.java)
+            .setQuery(mRefContacts, CommonModel::class.java)
             .build()
 
-        mAdapter = object: FirebaseRecyclerAdapter<CommonModel,ContactsHolder>(options){
+        mAdapter = object : FirebaseRecyclerAdapter<CommonModel, ContactsHolder>(options) {
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsHolder {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_item,parent,false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.contact_item, parent, false)
                 return ContactsHolder(view)
             }
 
@@ -64,13 +65,17 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
                 model: CommonModel
             ) {
                 mRefUsers = REF_DATABASE_ROOT.child(NODE_USERS).child(model.id)
-                mRefUserListener = AppValueEventListener{
+                mRefUserListener = AppValueEventListener {
                     val contact = it.getCommonModel()
-                    holder.name.text = contact.fullname
+                    if (contact.fullname.isEmpty()) {
+                        holder.name.text = model.fullname
+                    } else {
+                        holder.name.text = contact.fullname
+                    }
                     holder.status.text = contact.state
                     holder.photo.downloadAndSetImage(contact.photoUrl)
                     holder.itemView.setOnClickListener {
-                        replaceFragment(SingleChatFragment(contact))
+                        replaceFragment(SingleChatFragment(model))
                     }
                 }
 
