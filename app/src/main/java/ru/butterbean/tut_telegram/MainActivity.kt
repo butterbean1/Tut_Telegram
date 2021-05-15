@@ -8,9 +8,9 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
-import ru.butterbean.tut_telegram.ui.fragments.ChatsFragment
+import ru.butterbean.tut_telegram.ui.fragments.MainFragment
+import ru.butterbean.tut_telegram.ui.fragments.register.EnterPhoneNumberFragment
 import ru.butterbean.tut_telegram.ui.objects.AppDrawer
 import ru.butterbean.tut_telegram.utilites.*
 
@@ -49,11 +49,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFunc() {
         setSupportActionBar(mToolbar)
-        mAppDrawer.create()
         if (AUTH.currentUser != null) {
-            replaceFragment(ChatsFragment(), false)
+            mAppDrawer.create()
+            replaceFragment(MainFragment(), false)
         } else {
-            replaceActivity(RegisterActivity())
+            replaceFragment(EnterPhoneNumberFragment(), false)
         }
     }
 
@@ -68,7 +68,11 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (ContextCompat.checkSelfPermission(APP_ACTIVITY, READ_CONTACTS)==PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(
+                APP_ACTIVITY,
+                READ_CONTACTS
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             initContacts()
         }
     }

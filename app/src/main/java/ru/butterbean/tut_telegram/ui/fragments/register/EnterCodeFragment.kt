@@ -1,10 +1,10 @@
-package ru.butterbean.tut_telegram.ui.fragments
+package ru.butterbean.tut_telegram.ui.fragments.register
 
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_code.*
 import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
-import ru.butterbean.tut_telegram.activities.RegisterActivity
+import ru.butterbean.tut_telegram.ui.fragments.BaseFragment
 import ru.butterbean.tut_telegram.utilites.*
 
 class EnterCodeFragment(val phoneNumber: String, val id: String) :
@@ -12,7 +12,7 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
 
     override fun onStart() {
         super.onStart()
-        (activity as RegisterActivity).title = phoneNumber
+        APP_ACTIVITY.title = phoneNumber
         register_input_code.addTextChangedListener(AppTextWatcher {
             val string = register_input_code.text.toString()
             if (string.length == 6) {
@@ -38,7 +38,7 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
                         REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dataMap)
                             .addOnSuccessListener {
                                 showToast("Добро пожаловать")
-                                (activity as RegisterActivity).replaceActivity(MainActivity())
+                                restartActivity()
                             }
                             .addOnFailureListener { showToast(it.message.toString()) }
                     }

@@ -1,4 +1,4 @@
-package ru.butterbean.tut_telegram.ui.fragments
+package ru.butterbean.tut_telegram.ui.fragments.register
 
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -8,11 +8,8 @@ import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
-import ru.butterbean.tut_telegram.activities.RegisterActivity
-import ru.butterbean.tut_telegram.utilites.AUTH
-import ru.butterbean.tut_telegram.utilites.replaceActivity
-import ru.butterbean.tut_telegram.utilites.replaceFragment
-import ru.butterbean.tut_telegram.utilites.showToast
+import ru.butterbean.tut_telegram.ui.fragments.BaseFragment
+import ru.butterbean.tut_telegram.utilites.*
 import java.util.concurrent.TimeUnit
 
 class EnterPhoneNumberFragment : BaseFragment(R.layout.fragment_enter_phone_number) {
@@ -28,7 +25,7 @@ class EnterPhoneNumberFragment : BaseFragment(R.layout.fragment_enter_phone_numb
                 AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
                     if (task.isSuccessful){
                         showToast("Добро пожаловать!")
-                        (activity as RegisterActivity).replaceActivity(MainActivity())
+                        restartActivity()
                     }else{showToast(task.exception?.message.toString())}
                 }
             }
@@ -59,7 +56,7 @@ class EnterPhoneNumberFragment : BaseFragment(R.layout.fragment_enter_phone_numb
         val phoneAuthOptions = PhoneAuthOptions.newBuilder()
             .setPhoneNumber(mPhoneNumber)
             .setTimeout(60,TimeUnit.SECONDS)
-            .setActivity(activity as RegisterActivity)
+            .setActivity(APP_ACTIVITY)
             .setCallbacks(mCallBack)
             .build()
         PhoneAuthProvider.verifyPhoneNumber(phoneAuthOptions)

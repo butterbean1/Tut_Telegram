@@ -9,7 +9,6 @@ import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.butterbean.tut_telegram.R
-import ru.butterbean.tut_telegram.activities.RegisterActivity
 import ru.butterbean.tut_telegram.utilites.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -55,7 +54,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             R.id.settings_menu_exit -> {
                 AppStates.updateState(AppStates.OFFLINE)
                 AUTH.signOut()
-                (APP_ACTIVITY).replaceActivity(RegisterActivity())
+                restartActivity()
             }
             R.id.settings_menu_change_name -> replaceFragment(ChangeNameFragment())
         }
