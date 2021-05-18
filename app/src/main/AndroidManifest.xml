@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Tut_TelegramLight">
         <activity android:name="com.canhub.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"/>
-        <activity android:name=".MainActivity" android:windowSoftInputMode="stateVisible|adjustResize">
+        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
