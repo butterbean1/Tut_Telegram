@@ -5,21 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.message_item.view.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.utilites.CURRENT_UID
-import ru.butterbean.tut_telegram.utilites.DiffUtilCallback
 import ru.butterbean.tut_telegram.utilites.asTime
-import java.text.SimpleDateFormat
-import java.util.*
 
 class SingleChatAdapter: RecyclerView.Adapter<SingleChatAdapter.SingleChatHolder>() {
 
     private var mListMessagesCache = mutableListOf<CommonModel>()
-    private lateinit var mDiffResult: DiffUtil.DiffResult
 
     class SingleChatHolder(view: View):RecyclerView.ViewHolder(view){
         val blockUserMessage:ConstraintLayout = view.block_user_message
@@ -57,23 +52,25 @@ class SingleChatAdapter: RecyclerView.Adapter<SingleChatAdapter.SingleChatHolder
     override fun getItemCount(): Int = mListMessagesCache.size
 
 
-    fun addItem(item:CommonModel,
-                toBottom:Boolean,
-                onSucess:()->Unit){
-        if (toBottom){
+    fun addItemToBottom(item:CommonModel,
+                onSuccess:()->Unit){
             if (!mListMessagesCache.contains(item)){
                 mListMessagesCache.add(item)
                 notifyItemInserted(mListMessagesCache.size)
             }
-        }else{
-            if (!mListMessagesCache.contains(item)){
-                mListMessagesCache.add(item)
-                mListMessagesCache.sortBy { it.timeStamp.toString() }
-                notifyItemInserted(0)
-            }
-        }
-        onSucess()
+        onSuccess()
     }
+
+    fun addItemToTop(item:CommonModel,
+                onSuccess:()->Unit){
+        if (!mListMessagesCache.contains(item)){
+            mListMessagesCache.add(item)
+            mListMessagesCache.sortBy { it.timeStamp.toString() }
+            notifyItemInserted(0)
+        }
+        onSuccess()
+    }
+
 }
 
 
