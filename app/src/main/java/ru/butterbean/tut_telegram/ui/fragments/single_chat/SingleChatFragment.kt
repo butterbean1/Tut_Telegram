@@ -1,12 +1,18 @@
 package ru.butterbean.tut_telegram.ui.fragments.single_chat
 
+import android.app.Activity
+import android.content.Intent
 import android.view.View
 import android.widget.AbsListView
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.canhub.cropper.CropImage
+import com.canhub.cropper.CropImageView
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_single_chat.*
 import kotlinx.android.synthetic.main.toolbar_info.view.*
 import ru.butterbean.tut_telegram.R
@@ -42,9 +48,52 @@ class SingleChatFragment(private val contact: CommonModel) :
     private fun initFields() {
         mSwipeRefreshLayout = chat_swipe_refresh
         mLayoutManager = LinearLayoutManager(this.context)
+        chat_input_message.addTextChangedListener(AppTextWatcher{
+            val string = chat_input_message.text.toString()
+            if (string.isEmpty()){
+                chat_btn_send_message.visibility = View.GONE
+                chat_btn_attach.visibility = View.VISIBLE
+            }else{
+                chat_btn_send_message.visibility = View.VISIBLE
+                chat_btn_attach.visibility = View.GONE
+            }
+        })
+        chat_btn_attach.setOnClickListener{
+            attachFile()
+        }
     }
 
-    private fun initRecycleView() {
+    private fun attachFile() {
+        CropImage.activity()
+            .setAspectRatio(1,1)
+            .setRequestedSize(600,600)
+            .start(APP_ACTIVITY,this)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+            && resultCode== Activity.RESULT_OK
+            && data!=null){
+            val uri = CropImage.getActivityResult(data)?.uriContent!!
+            val messageKey = REF_DATABASE_ROOT.child(NODE_MESSAGES).child(CURRENT_UID)
+                .child(contact.id).push().key.toString()
+            val path = REF_STORAGE_ROOT
+                .child(FOLDER_MESSAGES_IMAGES)
+                .child(messageKey)
+
+            putImageToStorage(uri,path){
+                getUrlFromStorage(path){
+                    sendMessageAsImage(contact.id,it,messageKey)
+                }
+            }
+
+        }else{
+            showToast("Ошибка прикрепления фото $resultCode")
+        }
+    }
+
+     private fun initRecycleView() {
         mRecyclerView = chat_recycle_view
         mAdapter = SingleChatAdapter()
         mRefMessages = REF_DATABASE_ROOT.child(NODE_MESSAGES)

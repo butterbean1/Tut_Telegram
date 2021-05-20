@@ -28,6 +28,7 @@ const val NODE_PHONES = "phones"
 const val NODE_PHONES_CONTACTS = "phones_contacts"
 
 const val FOLDER_PROFILE_IMAGE = "profile_image"
+const val FOLDER_MESSAGES_IMAGES = "message_image"
 
 const val CHILD_ID = "id"
 const val CHILD_PHONE = "phone"
@@ -35,6 +36,7 @@ const val CHILD_USERNAME = "username"
 const val CHILD_FULLNAME = "fullname"
 const val CHILD_BIO = "bio"
 const val CHILD_PHOTO_URL = "photoUrl"
+const val CHILD_IMAGE_URL = "imageUrl"
 const val CHILD_STATE = "state"
 const val CHILD_TEXT = "text"
 const val CHILD_TYPE = "type"
@@ -130,6 +132,27 @@ fun sendMessage(message: String, receivingUserId: String, typeText: String, func
         .addOnFailureListener { showToast(it.message.toString()) }
 
 }
+
+fun sendMessageAsImage(receivingUserId: String, imageUrl: String, messageKey: String) {
+    val refDialogUser = "$NODE_MESSAGES/$CURRENT_UID/$receivingUserId"
+    val refDialogReceivingUser = "$NODE_MESSAGES/$receivingUserId/$CURRENT_UID"
+    val mapMessage = hashMapOf<String, Any>()
+
+    mapMessage[CHILD_FROM] = CURRENT_UID
+    mapMessage[CHILD_TYPE] = TYPE_MESSAGE_IMAGE
+    mapMessage[CHILD_ID] = messageKey.toString()
+    mapMessage[CHILD_TIMESTAMP] = ServerValue.TIMESTAMP
+    mapMessage[CHILD_IMAGE_URL] = imageUrl
+
+    val mapDialog = hashMapOf<String, Any>()
+    mapDialog["$refDialogUser/$messageKey"] = mapMessage
+    mapDialog["$refDialogReceivingUser/$messageKey"] = mapMessage
+
+    REF_DATABASE_ROOT
+        .updateChildren(mapDialog)
+        .addOnFailureListener { showToast(it.message.toString()) }
+}
+
 
 fun updateCurrentUsername(newUsername: String) {
     REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME)

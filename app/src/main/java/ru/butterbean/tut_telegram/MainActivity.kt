@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFunc() {
         setSupportActionBar(mToolbar)
+        mAppDrawer.create()
         if (AUTH.currentUser != null) {
-            mAppDrawer.create()
             replaceFragment(MainFragment(), false)
         } else {
             replaceFragment(EnterPhoneNumberFragment(), false)
