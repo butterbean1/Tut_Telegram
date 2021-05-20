@@ -30,18 +30,29 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
                 val dataMap = mutableMapOf<String, Any>()
                 dataMap[CHILD_ID] = uid
                 dataMap[CHILD_PHONE] = phoneNumber
-                dataMap[CHILD_USERNAME] = uid
 
-                REF_DATABASE_ROOT.child(NODE_PHONES).child(phoneNumber).setValue(uid)
-                    .addOnFailureListener { showToast(it.message.toString()) }
-                    .addOnSuccessListener {
-                        REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dataMap)
-                            .addOnSuccessListener {
-                                showToast("Добро пожаловать")
-                                restartActivity()
-                            }
+
+                REF_DATABASE_ROOT.child(NODE_USERS).child(uid)
+                    .addListenerForSingleValueEvent(AppValueEventListener {
+
+                        if (!it.hasChild(CHILD_USERNAME)) {
+                            dataMap[CHILD_USERNAME] = uid
+                        }
+
+                        REF_DATABASE_ROOT.child(NODE_PHONES).child(phoneNumber).setValue(uid)
                             .addOnFailureListener { showToast(it.message.toString()) }
-                    }
+                            .addOnSuccessListener {
+                                REF_DATABASE_ROOT.child(NODE_USERS).child(uid)
+                                    .updateChildren(dataMap)
+                                    .addOnSuccessListener {
+                                        showToast("Добро пожаловать")
+                                        restartActivity()
+                                    }
+                                    .addOnFailureListener { showToast(it.message.toString()) }
+                            }
+                    })
+
+
             } else showToast(task.exception?.message.toString())
         }
     }
