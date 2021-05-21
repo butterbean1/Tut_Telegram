@@ -1,7 +1,6 @@
 package ru.butterbean.tut_telegram.utilites
 
 import android.net.Uri
-import android.provider.ContactsContract
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
@@ -36,7 +35,7 @@ const val CHILD_USERNAME = "username"
 const val CHILD_FULLNAME = "fullname"
 const val CHILD_BIO = "bio"
 const val CHILD_PHOTO_URL = "photoUrl"
-const val CHILD_IMAGE_URL = "imageUrl"
+const val CHILD_FILE_URL = "fileUrl"
 const val CHILD_STATE = "state"
 const val CHILD_TEXT = "text"
 const val CHILD_TYPE = "type"
@@ -142,7 +141,7 @@ fun sendMessageAsImage(receivingUserId: String, imageUrl: String, messageKey: St
     mapMessage[CHILD_TYPE] = TYPE_MESSAGE_IMAGE
     mapMessage[CHILD_ID] = messageKey.toString()
     mapMessage[CHILD_TIMESTAMP] = ServerValue.TIMESTAMP
-    mapMessage[CHILD_IMAGE_URL] = imageUrl
+    mapMessage[CHILD_FILE_URL] = imageUrl
 
     val mapDialog = hashMapOf<String, Any>()
     mapDialog["$refDialogUser/$messageKey"] = mapMessage
@@ -184,6 +183,13 @@ fun setBioToDatabase(newBio: String) {
             APP_ACTIVITY.supportFragmentManager.popBackStack()
         }
         .addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun getMessageKey(id: String) = REF_DATABASE_ROOT.child(NODE_MESSAGES).child(CURRENT_UID)
+    .child(id).push().key.toString()
+
+fun uploadFileToStorage(uri:Uri,messageKey:String) {
+    showToast("Record OK")
 }
 
 fun setNameToDatabase(fullname: String) {
