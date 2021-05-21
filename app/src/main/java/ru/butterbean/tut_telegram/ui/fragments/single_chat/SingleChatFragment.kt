@@ -14,13 +14,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.canhub.cropper.CropImage
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_single_chat.*
 import kotlinx.android.synthetic.main.toolbar_info.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.butterbean.tut_telegram.R
+import ru.butterbean.tut_telegram.database.*
 import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.models.UserModel
 import ru.butterbean.tut_telegram.ui.fragments.BaseFragment
@@ -90,7 +90,8 @@ class SingleChatFragment(private val contact: CommonModel) :
                             chat_input_message.setText("")
                             chat_btn_voice.colorFilter = null
                             mAppVoiceRecorder.stopRecord { file, messageKey ->
-                                uploadFileToStorage(Uri.fromFile(file), messageKey)
+                                uploadFileToStorage(Uri.fromFile(file),messageKey,contact.id, TYPE_MESSAGE_VOICE)
+                                mSmoothScrollToPosition = true
                             }
                         }
                     }
@@ -115,17 +116,8 @@ class SingleChatFragment(private val contact: CommonModel) :
         ) {
             val uri = CropImage.getActivityResult(data)?.uriContent!!
             val messageKey = getMessageKey(contact.id)
-            val path = REF_STORAGE_ROOT
-                .child(FOLDER_MESSAGES_IMAGES)
-                .child(messageKey)
-
-            putImageToStorage(uri, path) {
-                getUrlFromStorage(path) {
-
-                    sendMessageAsImage(contact.id, it, messageKey)
-                    mSmoothScrollToPosition = true
-                }
-            }
+            uploadFileToStorage(uri,messageKey,contact.id, TYPE_MESSAGE_IMAGE)
+            mSmoothScrollToPosition = true
 
         } else {
             showToast("Ошибка прикрепления фото $resultCode")

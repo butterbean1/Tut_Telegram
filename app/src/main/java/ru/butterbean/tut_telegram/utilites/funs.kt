@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
+import ru.butterbean.tut_telegram.database.updatePhonesToDatabase
 import ru.butterbean.tut_telegram.models.CommonModel
 import java.text.SimpleDateFormat
 import java.util.*

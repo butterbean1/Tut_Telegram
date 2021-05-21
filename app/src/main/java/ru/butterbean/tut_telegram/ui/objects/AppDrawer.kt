@@ -4,8 +4,6 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
@@ -21,7 +19,7 @@ import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.ui.fragments.ContactsFragment
 import ru.butterbean.tut_telegram.ui.fragments.SettingsFragment
 import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
-import ru.butterbean.tut_telegram.utilites.USER
+import ru.butterbean.tut_telegram.database.USER
 import ru.butterbean.tut_telegram.utilites.downloadAndSetImage
 import ru.butterbean.tut_telegram.utilites.replaceFragment
 

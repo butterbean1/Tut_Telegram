@@ -9,6 +9,7 @@ import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.butterbean.tut_telegram.R
+import ru.butterbean.tut_telegram.database.*
 import ru.butterbean.tut_telegram.utilites.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -70,7 +71,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
                 .child(CURRENT_UID)
 
-            putImageToStorage(uri,path){
+            putFileToStorage(uri,path){
                 getUrlFromStorage(path){
                     putUrlToDatabase(it){
                         settings_user_photo.downloadAndSetImage(it)

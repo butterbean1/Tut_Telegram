@@ -8,6 +8,9 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.butterbean.tut_telegram.database.AUTH
+import ru.butterbean.tut_telegram.database.initFirebase
+import ru.butterbean.tut_telegram.database.initUser
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
 import ru.butterbean.tut_telegram.ui.fragments.MainFragment
 import ru.butterbean.tut_telegram.ui.fragments.register.EnterPhoneNumberFragment

@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.message_item.view.*
 import ru.butterbean.tut_telegram.R
+import ru.butterbean.tut_telegram.database.CURRENT_UID
 import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.utilites.*
 

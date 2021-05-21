@@ -2,6 +2,7 @@ package ru.butterbean.tut_telegram.ui.fragments
 
 import kotlinx.android.synthetic.main.fragment_change_username.*
 import ru.butterbean.tut_telegram.R
+import ru.butterbean.tut_telegram.database.*
 import ru.butterbean.tut_telegram.utilites.*
 
 class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_username) {
@@ -23,7 +24,9 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
                     if (it.hasChild(mNewUsername)){
                         showToast(getString(R.string.username_is_busy),true)
                     }else{
-                        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mNewUsername).setValue(CURRENT_UID)
+                        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(mNewUsername).setValue(
+                            CURRENT_UID
+                        )
                             .addOnCompleteListener {
                                 if (it.isSuccessful){
                                     updateCurrentUsername(mNewUsername)

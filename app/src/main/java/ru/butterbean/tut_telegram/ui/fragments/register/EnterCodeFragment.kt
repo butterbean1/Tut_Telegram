@@ -2,8 +2,8 @@ package ru.butterbean.tut_telegram.ui.fragments.register
 
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_code.*
-import ru.butterbean.tut_telegram.MainActivity
 import ru.butterbean.tut_telegram.R
+import ru.butterbean.tut_telegram.database.*
 import ru.butterbean.tut_telegram.ui.fragments.BaseFragment
 import ru.butterbean.tut_telegram.utilites.*
 

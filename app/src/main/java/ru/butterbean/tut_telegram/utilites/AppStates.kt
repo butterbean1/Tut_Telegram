@@ -1,5 +1,7 @@
 package ru.butterbean.tut_telegram.utilites
 
+import ru.butterbean.tut_telegram.database.*
+
 enum class AppStates(val state: String) {
     ONLINE("в сети"),
     OFFLINE("был недавно"),
