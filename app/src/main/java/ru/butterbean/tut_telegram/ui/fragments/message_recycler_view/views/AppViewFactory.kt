@@ -2,6 +2,7 @@ package ru.butterbean.tut_telegram.ui.fragments.message_recycler_view.views
 
 import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.utilites.TYPE_MESSAGE_IMAGE
+import ru.butterbean.tut_telegram.utilites.TYPE_MESSAGE_VOICE
 
 class AppViewFactory {
     companion object{
@@ -12,7 +13,13 @@ class AppViewFactory {
                     message.from,
                     message.timeStamp.toString(),
                     message.fileUrl
-                    )
+                )
+                TYPE_MESSAGE_VOICE -> ViewVoiceMessage(
+                    message.id,
+                    message.from,
+                    message.timeStamp.toString(),
+                    message.fileUrl
+                )
                 else -> ViewTextMessage(
                     message.id,
                     message.from,
