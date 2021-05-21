@@ -1,10 +1,10 @@
-package ru.butterbean.tut_telegram.ui.fragments.register
+package ru.butterbean.tut_telegram.ui.screens.register
 
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_code.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.database.*
-import ru.butterbean.tut_telegram.ui.fragments.BaseFragment
+import ru.butterbean.tut_telegram.ui.screens.BaseFragment
 import ru.butterbean.tut_telegram.utilites.*
 
 class EnterCodeFragment(val phoneNumber: String, val id: String) :

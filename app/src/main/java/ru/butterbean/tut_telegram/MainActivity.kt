@@ -12,8 +12,8 @@ import ru.butterbean.tut_telegram.database.AUTH
 import ru.butterbean.tut_telegram.database.initFirebase
 import ru.butterbean.tut_telegram.database.initUser
 import ru.butterbean.tut_telegram.databinding.ActivityMainBinding
-import ru.butterbean.tut_telegram.ui.fragments.MainFragment
-import ru.butterbean.tut_telegram.ui.fragments.register.EnterPhoneNumberFragment
+import ru.butterbean.tut_telegram.ui.screens.MainFragment
+import ru.butterbean.tut_telegram.ui.screens.register.EnterPhoneNumberFragment
 import ru.butterbean.tut_telegram.ui.objects.AppDrawer
 import ru.butterbean.tut_telegram.utilites.*
 

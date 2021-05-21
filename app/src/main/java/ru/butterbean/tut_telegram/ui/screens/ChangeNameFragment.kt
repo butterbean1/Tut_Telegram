@@ -1,4 +1,4 @@
-package ru.butterbean.tut_telegram.ui.fragments
+package ru.butterbean.tut_telegram.ui.screens
 
 import kotlinx.android.synthetic.main.fragment_change_name.*
 import ru.butterbean.tut_telegram.R

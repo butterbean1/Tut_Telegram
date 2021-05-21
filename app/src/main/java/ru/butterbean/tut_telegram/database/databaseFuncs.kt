@@ -13,6 +13,7 @@ import ru.butterbean.tut_telegram.models.UserModel
 import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
 import ru.butterbean.tut_telegram.utilites.AppValueEventListener
 import ru.butterbean.tut_telegram.utilites.showToast
+import java.io.File
 
 fun initFirebase() {
     AUTH = FirebaseAuth.getInstance()
@@ -173,5 +174,12 @@ fun setNameToDatabase(fullname: String) {
             APP_ACTIVITY.mAppDrawer.updateHeader()
             APP_ACTIVITY.supportFragmentManager.popBackStack()
         }
+        .addOnFailureListener { showToast(it.message.toString()) }
+}
+
+fun getFileFromStorage(mFile: File, fileUrl: String, function: () -> Unit) {
+    val path = REF_STORAGE_ROOT.storage.getReferenceFromUrl(fileUrl)
+    path.getFile(mFile)
+        .addOnSuccessListener { function() }
         .addOnFailureListener { showToast(it.message.toString()) }
 }

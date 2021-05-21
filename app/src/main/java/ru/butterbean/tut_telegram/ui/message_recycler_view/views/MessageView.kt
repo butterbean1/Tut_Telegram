@@ -1,4 +1,4 @@
-package ru.butterbean.tut_telegram.ui.fragments.message_recycler_view.views
+package ru.butterbean.tut_telegram.ui.message_recycler_view.views
 
 interface MessageView {
     val id:String

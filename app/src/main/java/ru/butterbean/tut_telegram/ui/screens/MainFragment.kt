@@ -1,4 +1,4 @@
-package ru.butterbean.tut_telegram.ui.fragments
+package ru.butterbean.tut_telegram.ui.screens
 
 import androidx.fragment.app.Fragment
 import ru.butterbean.tut_telegram.R

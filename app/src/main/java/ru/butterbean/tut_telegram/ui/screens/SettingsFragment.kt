@@ -1,4 +1,4 @@
-package ru.butterbean.tut_telegram.ui.fragments
+package ru.butterbean.tut_telegram.ui.screens
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent

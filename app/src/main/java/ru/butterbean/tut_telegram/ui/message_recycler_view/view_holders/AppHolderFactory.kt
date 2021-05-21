@@ -1,10 +1,10 @@
-package ru.butterbean.tut_telegram.ui.fragments.message_recycler_view.view_holder
+package ru.butterbean.tut_telegram.ui.message_recycler_view.view_holders
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.butterbean.tut_telegram.R
-import ru.butterbean.tut_telegram.ui.fragments.message_recycler_view.views.MessageView
+import ru.butterbean.tut_telegram.ui.message_recycler_view.views.MessageView
 
 class AppHolderFactory {
     companion object{

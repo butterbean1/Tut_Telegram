@@ -1,4 +1,4 @@
-package ru.butterbean.tut_telegram.ui.fragments.single_chat
+package ru.butterbean.tut_telegram.ui.screens.single_chat
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -23,8 +23,8 @@ import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.database.*
 import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.models.UserModel
-import ru.butterbean.tut_telegram.ui.fragments.BaseFragment
-import ru.butterbean.tut_telegram.ui.fragments.message_recycler_view.views.AppViewFactory
+import ru.butterbean.tut_telegram.ui.screens.BaseFragment
+import ru.butterbean.tut_telegram.ui.message_recycler_view.views.AppViewFactory
 import ru.butterbean.tut_telegram.utilites.*
 
 class SingleChatFragment(private val contact: CommonModel) :
@@ -222,5 +222,6 @@ class SingleChatFragment(private val contact: CommonModel) :
     override fun onDestroyView() {
         super.onDestroyView()
         mAppVoiceRecorder.releaseRecorder()
+        mAdapter.onDestroy()
     }
 }
