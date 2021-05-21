@@ -24,6 +24,7 @@ import ru.butterbean.tut_telegram.database.*
 import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.models.UserModel
 import ru.butterbean.tut_telegram.ui.fragments.BaseFragment
+import ru.butterbean.tut_telegram.ui.fragments.message_recycler_view.views.AppViewFactory
 import ru.butterbean.tut_telegram.utilites.*
 
 class SingleChatFragment(private val contact: CommonModel) :
@@ -137,11 +138,11 @@ class SingleChatFragment(private val contact: CommonModel) :
         mMessagesListener = AppChildEventListener { snapshot ->
             val message = snapshot.getCommonModel()
             if (mSmoothScrollToPosition) {
-                mAdapter.addItemToBottom(message) {
+                mAdapter.addItemToBottom(AppViewFactory.getView(message)) {
                     mRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
                 }
             } else {
-                mAdapter.addItemToTop(message) {
+                mAdapter.addItemToTop(AppViewFactory.getView(message)) {
                     mSwipeRefreshLayout.isRefreshing = false
                 }
             }
