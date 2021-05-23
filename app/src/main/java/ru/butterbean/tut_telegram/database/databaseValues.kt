@@ -31,3 +31,5 @@ const val CHILD_TEXT = "text"
 const val CHILD_TYPE = "type"
 const val CHILD_FROM = "from"
 const val CHILD_TIMESTAMP = "timeStamp"
+
+const val NODE_MAIN_LIST = "main_list"

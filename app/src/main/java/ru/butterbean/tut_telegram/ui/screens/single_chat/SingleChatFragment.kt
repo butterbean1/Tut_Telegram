@@ -142,11 +142,11 @@ class SingleChatFragment(private val contact: CommonModel) :
                     uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_IMAGE)
                     mSmoothScrollToPosition = true
                 }
-                PICK_FILE_REQUEST_CODE ->{
+                PICK_FILE_REQUEST_CODE -> {
                     val uri = data.data
                     val messageKey = getMessageKey(contact.id)
                     val filename = getFilenameFromUri(uri!!)
-                    uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_FILE,filename)
+                    uploadFileToStorage(uri, messageKey, contact.id, TYPE_MESSAGE_FILE, filename)
                     mSmoothScrollToPosition = true
                 }
             }
@@ -225,11 +225,11 @@ class SingleChatFragment(private val contact: CommonModel) :
             if (message.isEmpty()) {
                 showToast("Введите сообщение", true)
             } else sendMessage(message, contact.id, TYPE_TEXT) {
+                saveToMainList(contact.id, TYPE_CHAT)
                 chat_input_message.setText("")
             }
         }
     }
-
 
     private fun initInfoToolbar() {
         if (mReceivingUser.fullname.isEmpty()) {
