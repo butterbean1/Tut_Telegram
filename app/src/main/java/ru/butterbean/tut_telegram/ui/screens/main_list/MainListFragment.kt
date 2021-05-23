@@ -9,6 +9,7 @@ import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
 import ru.butterbean.tut_telegram.utilites.AppValueEventListener
 import ru.butterbean.tut_telegram.utilites.hideKeyboard
+import ru.butterbean.tut_telegram.utilites.showToast
 
 class MainListFragment : Fragment(R.layout.fragment_main_list) {
 
@@ -42,7 +43,11 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
                     mRefMessages.child(model.id).limitToLast(1)
                         .addListenerForSingleValueEvent(AppValueEventListener{lastMessageSnapshot ->
                         val tempList = lastMessageSnapshot.children.map { it.getCommonModel() }
-                        newModel.lastMessage = tempList[0].text
+                        if(tempList.isEmpty()){
+                                newModel.lastMessage = "Чат очищен"
+                            }else {
+                                newModel.lastMessage = tempList[0].text
+                            }
                         if (newModel.fullname.isEmpty()){
                             newModel.fullname = newModel.phone
                         }

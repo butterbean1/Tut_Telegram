@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.choice_upload.*
 import kotlinx.android.synthetic.main.fragment_single_chat.*
+import kotlinx.android.synthetic.main.main_list_item.*
 import kotlinx.android.synthetic.main.toolbar_info.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +27,7 @@ import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.models.UserModel
 import ru.butterbean.tut_telegram.ui.screens.BaseFragment
 import ru.butterbean.tut_telegram.ui.message_recycler_view.views.AppViewFactory
+import ru.butterbean.tut_telegram.ui.screens.main_list.MainListFragment
 import ru.butterbean.tut_telegram.ui.screens.settings.ChangeNameFragment
 import ru.butterbean.tut_telegram.utilites.*
 
@@ -263,8 +265,16 @@ class SingleChatFragment(private val contact: CommonModel) :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-
+            R.id.menu_clear_chat -> clearChat(contact.id){
+                showToast("Чат очищен")
+                replaceFragment(MainListFragment())
+            }
+            R.id.menu_delete_chat -> deleteChat(contact.id){
+                showToast("Чат удален")
+                replaceFragment(MainListFragment())
+            }
         }
         return true
     }
+
 }
