@@ -29,4 +29,5 @@
     <string name="message">Сообщение</string>
     <string name="def_message_text">Привет я Вова</string>
     <string name="def_message_time">09:37</string>
+    <string name="last_message_text">Текст последнего сообщения</string>
 </resources>
