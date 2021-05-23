@@ -1,9 +1,10 @@
-package ru.butterbean.tut_telegram.ui.screens
+package ru.butterbean.tut_telegram.ui.screens.settings
 
 import kotlinx.android.synthetic.main.fragment_change_bio.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.database.USER
 import ru.butterbean.tut_telegram.database.setBioToDatabase
+import ru.butterbean.tut_telegram.ui.screens.BaseChangeFragment
 
 class ChangeBioFragment : BaseChangeFragment(R.layout.fragment_change_bio) {
     override fun onResume() {

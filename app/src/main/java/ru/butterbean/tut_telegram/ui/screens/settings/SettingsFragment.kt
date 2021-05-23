@@ -1,4 +1,4 @@
-package ru.butterbean.tut_telegram.ui.screens
+package ru.butterbean.tut_telegram.ui.screens.settings
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
@@ -10,6 +10,7 @@ import com.canhub.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.database.*
+import ru.butterbean.tut_telegram.ui.screens.BaseFragment
 import ru.butterbean.tut_telegram.utilites.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {

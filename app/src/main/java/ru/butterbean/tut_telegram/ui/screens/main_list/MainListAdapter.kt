@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.main_list_item.view.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.models.CommonModel
+import ru.butterbean.tut_telegram.ui.screens.single_chat.SingleChatFragment
 import ru.butterbean.tut_telegram.utilites.downloadAndSetImage
+import ru.butterbean.tut_telegram.utilites.replaceFragment
 
 class MainListAdapter: RecyclerView.Adapter<MainListAdapter.MainListHolder>() {
 
@@ -24,7 +26,11 @@ class MainListAdapter: RecyclerView.Adapter<MainListAdapter.MainListHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainListHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.main_list_item,parent,false)
-        return MainListHolder(view)
+        val holder = MainListHolder(view)
+        holder.itemView.setOnClickListener {
+            replaceFragment(SingleChatFragment(listItems[holder.bindingAdapterPosition]))
+        }
+        return holder
     }
 
     override fun onBindViewHolder(holder: MainListHolder, position: Int) {

@@ -1,8 +1,9 @@
-package ru.butterbean.tut_telegram.ui.screens
+package ru.butterbean.tut_telegram.ui.screens.settings
 
 import kotlinx.android.synthetic.main.fragment_change_username.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.database.*
+import ru.butterbean.tut_telegram.ui.screens.BaseChangeFragment
 import ru.butterbean.tut_telegram.utilites.*
 
 class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_username) {

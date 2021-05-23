@@ -30,4 +30,6 @@
     <string name="def_message_text">Привет я Вова</string>
     <string name="def_message_time">09:37</string>
     <string name="last_message_text">Текст последнего сообщения</string>
+    <string name="clear_chat">Очистить чат</string>
+    <string name="delete_chat">Удалить чат</string>
 </resources>
