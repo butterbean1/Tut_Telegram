@@ -16,7 +16,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
 import com.mikepenz.materialdrawer.util.DrawerImageLoader
 import ru.butterbean.tut_telegram.R
-import ru.butterbean.tut_telegram.ui.screens.ContactsFragment
+import ru.butterbean.tut_telegram.ui.screens.contacts.ContactsFragment
 import ru.butterbean.tut_telegram.ui.screens.settings.SettingsFragment
 import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
 import ru.butterbean.tut_telegram.database.USER

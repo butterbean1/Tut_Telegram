@@ -1,4 +1,4 @@
-package ru.butterbean.tut_telegram.ui.screens
+package ru.butterbean.tut_telegram.ui.screens.base
 
 import android.view.Menu
 import android.view.MenuInflater

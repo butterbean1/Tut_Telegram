@@ -8,7 +8,7 @@ import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.database.AUTH
-import ru.butterbean.tut_telegram.ui.screens.BaseFragment
+import ru.butterbean.tut_telegram.ui.screens.base.BaseFragment
 import ru.butterbean.tut_telegram.utilites.*
 import java.util.concurrent.TimeUnit
 
