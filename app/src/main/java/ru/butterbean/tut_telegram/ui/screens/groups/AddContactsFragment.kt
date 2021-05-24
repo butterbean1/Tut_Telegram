@@ -10,6 +10,7 @@ import ru.butterbean.tut_telegram.models.CommonModel
 import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
 import ru.butterbean.tut_telegram.utilites.AppValueEventListener
 import ru.butterbean.tut_telegram.utilites.hideKeyboard
+import ru.butterbean.tut_telegram.utilites.replaceFragment
 
 class AddContactsFragment : Fragment(R.layout.fragment_add_contacts) {
 
@@ -27,9 +28,7 @@ class AddContactsFragment : Fragment(R.layout.fragment_add_contacts) {
         hideKeyboard()
         initRecyclerView()
         add_contacts_btn_next.setOnClickListener {
-            listContacts.forEach{
-                println(it.id)
-            }
+            replaceFragment(CreateGroupFragment(listContacts))
         }
     }
 

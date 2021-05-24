@@ -32,4 +32,5 @@
     <string name="last_message_text">Текст последнего сообщения</string>
     <string name="clear_chat">Очистить чат</string>
     <string name="delete_chat">Удалить чат</string>
+    <string name="create_group">Создание группы</string>
 </resources>
