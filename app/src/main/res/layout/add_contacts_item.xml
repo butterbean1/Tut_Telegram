@@ -34,7 +34,7 @@
         tools:text="@string/def_full_name" />
 
     <TextView
-        android:id="@+id/main_list_item_last_message"
+        android:id="@+id/add_contacts_item_last_message"
         style="@style/smallText"
         app:layout_constraintStart_toEndOf="@id/add_contacts_item_photo"
         app:layout_constraintTop_toBottomOf="@id/add_contacts_item_name"

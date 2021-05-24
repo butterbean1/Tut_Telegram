@@ -20,6 +20,7 @@ import ru.butterbean.tut_telegram.ui.screens.contacts.ContactsFragment
 import ru.butterbean.tut_telegram.ui.screens.settings.SettingsFragment
 import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
 import ru.butterbean.tut_telegram.database.USER
+import ru.butterbean.tut_telegram.ui.screens.groups.AddContactsFragment
 import ru.butterbean.tut_telegram.utilites.downloadAndSetImage
 import ru.butterbean.tut_telegram.utilites.replaceFragment
 
@@ -124,6 +125,7 @@ class AppDrawer() {
     }
     private fun clickToItem(position:Int){
         when (position){
+            1 -> replaceFragment(AddContactsFragment())
             7 -> replaceFragment(SettingsFragment())
             4 -> replaceFragment(ContactsFragment())
         }
