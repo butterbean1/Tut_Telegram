@@ -32,6 +32,7 @@ class CreateGroupFragment(private var listContacts:List<CommonModel>):BaseFragme
                 showToast("Введите имя")
             }else{
                 createGroupToDatabase(nameGroup,mUri,listContacts){
+
                     replaceFragment(MainListFragment())
                 }
             }
