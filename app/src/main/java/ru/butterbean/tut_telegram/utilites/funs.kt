@@ -107,3 +107,5 @@ fun getFilenameFromUri(uri: Uri): String {
     }
 }
 
+fun getPlurals(count:Int) = APP_ACTIVITY.resources.getQuantityString(R.plurals.count_members,count,count)
+

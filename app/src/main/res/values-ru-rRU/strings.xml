@@ -1,6 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Телега</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="def_full_name">Vovan S</string>
     <string name="def_status">в сети</string>
@@ -34,9 +33,10 @@
     <string name="delete_chat">Удалить чат</string>
     <string name="create_group">Создание группы</string>
 
-    <plurals name="count_members">
+    <plurals name="count_members" >
         <item quantity="one">%d участник</item>
         <item quantity="few">%d участника</item>
+        <item quantity="many">%d участников</item>
         <item quantity="other">%d участников</item>
     </plurals>
 </resources>

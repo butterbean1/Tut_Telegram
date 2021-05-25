@@ -7,12 +7,10 @@ import kotlinx.android.synthetic.main.fragment_main_list.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.database.*
 import ru.butterbean.tut_telegram.models.CommonModel
-import ru.butterbean.tut_telegram.utilites.APP_ACTIVITY
-import ru.butterbean.tut_telegram.utilites.AppValueEventListener
-import ru.butterbean.tut_telegram.utilites.hideKeyboard
-import ru.butterbean.tut_telegram.utilites.replaceFragment
+import ru.butterbean.tut_telegram.ui.screens.base.BaseFragment
+import ru.butterbean.tut_telegram.utilites.*
 
-class AddContactsFragment : Fragment(R.layout.fragment_add_contacts) {
+class AddContactsFragment : BaseFragment(R.layout.fragment_add_contacts) {
 
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var  mAdapter:AddContactsAdapter
@@ -23,12 +21,16 @@ class AddContactsFragment : Fragment(R.layout.fragment_add_contacts) {
 
     override fun onResume() {
         super.onResume()
+        listContacts.clear()
         APP_ACTIVITY.title = "Добавить участников"
-        APP_ACTIVITY.mAppDrawer.enableDrawer()
         hideKeyboard()
         initRecyclerView()
         add_contacts_btn_next.setOnClickListener {
-            replaceFragment(CreateGroupFragment(listContacts))
+            if (listContacts.isEmpty()){
+                showToast("Добавьте участников")
+            }else{
+                replaceFragment(CreateGroupFragment(listContacts))
+            }
         }
     }
 
