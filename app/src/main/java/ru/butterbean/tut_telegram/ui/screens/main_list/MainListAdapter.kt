@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.main_list_item.view.*
 import ru.butterbean.tut_telegram.R
 import ru.butterbean.tut_telegram.models.CommonModel
+import ru.butterbean.tut_telegram.ui.screens.groups.GroupChatFragment
 import ru.butterbean.tut_telegram.ui.screens.single_chat.SingleChatFragment
+import ru.butterbean.tut_telegram.utilites.TYPE_CHAT
+import ru.butterbean.tut_telegram.utilites.TYPE_GROUP
 import ru.butterbean.tut_telegram.utilites.downloadAndSetImage
 import ru.butterbean.tut_telegram.utilites.replaceFragment
 
@@ -28,7 +31,11 @@ class MainListAdapter: RecyclerView.Adapter<MainListAdapter.MainListHolder>() {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.main_list_item,parent,false)
         val holder = MainListHolder(view)
         holder.itemView.setOnClickListener {
-            replaceFragment(SingleChatFragment(listItems[holder.bindingAdapterPosition]))
+
+            when(listItems[holder.bindingAdapterPosition].type){
+                TYPE_CHAT -> replaceFragment(SingleChatFragment(listItems[holder.bindingAdapterPosition]))
+                TYPE_GROUP -> replaceFragment(GroupChatFragment(listItems[holder.bindingAdapterPosition]))
+            }
         }
         return holder
     }
